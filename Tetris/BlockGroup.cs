@@ -21,7 +21,7 @@ namespace Tetris
             disapperColor = config.BackColor;
             rectPix = config.RectPix;
         }
-        public Block GetABlock()//从砖块组中随机抽取一个砖块样式然后返回
+        public Block GetABlock()//从砖块组中随机抽取一个砖块样式返回
         {
             Random rd = new Random();//声明产生一个随机类
             int keyOrder = rd.Next(0, info.Length);//产生一个随机数

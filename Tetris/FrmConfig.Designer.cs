@@ -200,7 +200,7 @@
             // 
             // txtContra
             // 
-            this.txtContra.Location = new System.Drawing.Point(77, 178);
+            this.txtContra.Location = new System.Drawing.Point(77, 176);
             this.txtContra.Name = "txtContra";
             this.txtContra.ReadOnly = true;
             this.txtContra.Size = new System.Drawing.Size(100, 21);
@@ -255,7 +255,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 181);
+            this.label5.Location = new System.Drawing.Point(6, 179);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 5;

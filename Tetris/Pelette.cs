@@ -21,7 +21,6 @@ namespace Tetris
         private Block runBlock;//正在活动的画板
         private Block readyBlock;//下一个砖块
         private int recPix;//单元格像素
-
         private System.Timers.Timer timerBlock;//定时器
         private int timeSpan = 800;
 

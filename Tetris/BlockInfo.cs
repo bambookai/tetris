@@ -13,6 +13,7 @@ namespace Tetris
     {
         private BitArray _id;//存储砖块样式信息
         private Color _bColor;//存储颜色信息
+
         public BlockInfo(BitArray id,Color bColor)//构造函数，给私有成员变量赋值
         {
             _id = id;

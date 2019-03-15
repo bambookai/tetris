@@ -44,6 +44,7 @@ namespace Tetris
                 }
             }
         }
+
         private BitArray StrToBit(string id)//把字符串转换为BItArray
         {
             if(id.Length!=25)

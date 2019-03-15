@@ -26,6 +26,7 @@ namespace Tetris
         private Color _backColor;
         private InfoArr info = new InfoArr();
         #region 私有变量相应的属性
+
         public Keys DownKey
         {
             get { return _downKey; }

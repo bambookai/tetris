@@ -21,7 +21,7 @@ namespace Tetris
         }
         public Block(Point[] sa,Color bColor,Color dColor,int pix)
         {
-            //重载构造函数，给成员变量赋值
+            //重载构造函数
             _blockColor = bColor;
             disapperColor = dColor;
             rectPix = pix;
