@@ -71,10 +71,11 @@ namespace Tetris
                 structArr[i].Y = temp;
             }
         }
-        public Rectangle PointToRect(Point p)
+        public Rectangle PointToRect(Point p) //把一个坐标点转化为画布的坐标值
         {
             return new Rectangle((_xPos + p.X) * rectPix + 1, (_yPos - p.Y) * rectPix + 1, rectPix - 2, rectPix - 2);
         }
+
         public virtual void Paint(Graphics gp)//在指定的画板下绘制砖块
         {
             SolidBrush sb = new SolidBrush(_blockColor);

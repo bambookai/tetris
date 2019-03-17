@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Configuration;
+
 namespace Tetris
 {
     class Pelette
@@ -15,14 +17,14 @@ namespace Tetris
         private int _width = 15;//画板的宽度
         private int _heihgt = 25;//画板高度
         private Color[,] coorArr;//固定砖块数组
-        private Color disapperColor;
+        private Color disapperColor;//背景色
         private Graphics gpPalette;//砖块活动画版
         private Graphics gpReady;//下一个砖块样式画板
         private Block runBlock;//正在活动的画板
         private Block readyBlock;//下一个砖块
         private int recPix;//单元格像素
         private System.Timers.Timer timerBlock;//定时器
-        private int timeSpan = 800;
+        private int timeSpan = Convert.ToInt32(ConfigurationManager.ConnectionStrings["timeSpan"].ConnectionString);
 
         public Pelette(int x,int y,int pix,Color dColor,Graphics gp,Graphics gr)
         {
@@ -39,22 +41,26 @@ namespace Tetris
             BlockGroup bGroup = new BlockGroup();
             runBlock = bGroup.GetABlock();
             runBlock.XPos = _width / 2;
-            int y = 0;
+            runBlock.YPos = 2;
+            runBlock.Paint(gpPalette);
+                
+            
             for(int i=0;i<runBlock.Length;i++)//寻找Y的最大值
             {
-                if(runBlock[i].Y>y)
+                if(runBlock[i].Y > runBlock.YPos)
                 {
-                    y = runBlock[i].Y;
+                    
+                    runBlock.YPos = runBlock[i].Y;
                 }
             }
-            runBlock.YPos = y;
+
             gpPalette.Clear(disapperColor);//清空画板
-            runBlock.Paint(gpPalette);
-            Thread.Sleep(20);
+            runBlock.Paint(gpPalette); //画运行砖块
+            Thread.Sleep(20); 
             readyBlock = bGroup.GetABlock();//去另一个砖块赋给readyBlock
             readyBlock.XPos = 4;//5*5的矩阵中心点为2
             readyBlock.YPos = 3;
-            gpReady.Clear(disapperColor);
+            gpReady.Clear(disapperColor); //清空画板
             readyBlock.Paint(gpReady);
 
             timerBlock = new System.Timers.Timer(timeSpan);
@@ -67,9 +73,9 @@ namespace Tetris
             CheckAndOverBlock();
             Down();
         }
-        public bool Down()
+        public bool Down() //砖块下一个单元格
         {
-            int xPos = runBlock.XPos;
+            int xPos = runBlock.XPos; 
             int yPos = runBlock.YPos + 1;
             for(int i=0;i<runBlock.Length;i++)
             {
@@ -78,9 +84,9 @@ namespace Tetris
                 if (!coorArr[xPos + runBlock[i].X, yPos - runBlock[i].Y].IsEmpty) //如果下边有东西则失败
                     return false;
             }
-            runBlock.erase(gpPalette);
+            runBlock.erase(gpPalette); //擦除原来位置的砖块
             runBlock.YPos++;
-            runBlock.Paint(gpPalette);
+            runBlock.Paint(gpPalette); //在新位置上画砖块
             return true;
         }
         public void Drop()//丢下砖块
@@ -154,7 +160,7 @@ namespace Tetris
         }
         private void PaintBackGround(Graphics gp)//重画画板的背景
         {
-            gp.Clear(Color.Black);
+            gp.Clear(disapperColor);
             for(int i=0;i<_heihgt;i++)
             {
                 for(int j=0;j<_width;j++)
@@ -245,6 +251,8 @@ namespace Tetris
         }
         private void CheckAndDelFullRow()//检查并删除满行
         {
+
+            //找出当前砖块所在行范围
             int lowRow = runBlock.YPos - runBlock[0].Y;//LowRow代表当前砖块的Y轴的最小值
             int highRor = lowRow;//highRow代表当前砖块的y轴的最大值
             for (int i = 1; i < runBlock.Length;i++)
@@ -259,8 +267,9 @@ namespace Tetris
                     highRor = y;
                 }
             }
+
             bool repaint = false;//判断是否重画的标志
-            for(int i=lowRow;i<=highRor;i++)
+            for(int i=lowRow;i<=highRor;i++) //检查满行，如果有
             {
                 bool rowFull = true;
                 for(int j=0;j<_width;j++)

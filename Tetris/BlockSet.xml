@@ -8,40 +8,11 @@
   </Type>
   <Type>
     <ID>
-      0000101100011000000000000
+      000000 100011000000000000
     </ID>
     <Color>-65536</Color>
   </Type>
-  <Type>
-    <ID>
-      0000101100011100000000000
-    </ID>
-    <Color>-65536</Color>
-  </Type>
-  <Type>
-    <ID>
-      0000101100011000011100000
-    </ID>
-    <Color>-65536</Color>
-  </Type>
-  <Type>
-    <ID>
-      0000111100011000000000000
-    </ID>
-    <Color>-65536</Color>
-  </Type>
-  <Type>
-    <ID>
-      0000101100011000000010010
-    </ID>
-    <Color>-32708</Color>
-  </Type>
-  <Type>
-    <ID>
-      0000101100011000111000000
-    </ID>
-    <Color>-65536</Color>
-  </Type>
+  
   <Key>
     <DownKey>83</DownKey>
     <DropKey>88</DropKey>

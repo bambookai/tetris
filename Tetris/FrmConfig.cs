@@ -262,9 +262,9 @@ namespace Tetris
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("小凯哥是猪");
-        }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("");
+        //}
     }
 }
